@@ -1,12 +1,18 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-    int minPrice = INT_MAX;
-    int maxProfit = 0;
-    for (int p : prices) {
-        minPrice = min(minPrice, p);
-        maxProfit = max(maxProfit, p - minPrice);
+    int lengthOfLongestSubstring(string s) {
+        int result=0, max=0;
+        int l=0;
+        unordered_map<char, int> count;
+        for(int r=0;r<s.size();r++){
+            if(++count[s[r]]==2){
+                while(count[s[r]]==2){
+                    count[s[l]]--;
+                    l++;
+                }
+            }
+            max = max<r-l+1 ? r-l+1 : max;
+        }
+        return max;
     }
-    return maxProfit;
-}
 };
